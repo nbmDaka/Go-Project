@@ -12,10 +12,10 @@ import (
 )
 
 type application struct {
-	errorLog *log.Logger
-	infoLog  *log.Logger
-	news     *mysql.NewsModel
-	//food          *mysql.FoodModel
+	errorLog      *log.Logger
+	infoLog       *log.Logger
+	news          *mysql.NewsModel
+	food          *mysql.FoodModel
 	templateCache map[string]*template.Template
 }
 
@@ -42,10 +42,10 @@ func main() {
 	}
 
 	app := &application{
-		errorLog: errorLog,
-		infoLog:  infoLog,
-		news:     &mysql.NewsModel{DB: db},
-		//food:          &mysql.FoodModel{DB: db},
+		errorLog:      errorLog,
+		infoLog:       infoLog,
+		news:          &mysql.NewsModel{DB: db},
+		food:          &mysql.FoodModel{DB: db},
 		templateCache: templateCache,
 	}
 

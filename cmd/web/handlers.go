@@ -83,38 +83,38 @@ func (app *application) aboutPage(w http.ResponseWriter, r *http.Request) {
 
 }
 
-//func (app *application) foods(w http.ResponseWriter, r *http.Request) {
-//	s, err := app.food.Latest()
-//	if err != nil {
-//		app.serverError(w, err)
-//		return
-//	}
-//	app.render(w, r, "food.page.tmpl", &templateData{
-//		FoodsData: s,
-//	})
-//}
+func (app *application) foods(w http.ResponseWriter, r *http.Request) {
+	s, err := app.food.Latest()
+	if err != nil {
+		app.serverError(w, err)
+		return
+	}
+	app.render(w, r, "food.page.tmpl", &templateData{
+		FoodsData: s,
+	})
+}
 
-//func (app *application) createFood(w http.ResponseWriter, r *http.Request) {
-//	if r.Method == http.MethodPost {
-//		err := r.ParseForm()
-//		if err != nil {
-//			app.serverError(w, err)
-//			return
-//		}
-//
-//		meal_name := r.PostForm.Get("meal_name")
-//		weekday := r.PostForm.Get("weekday")
-//		quantity := r.PostForm.Get("quantity")
-//
-//		_, err = app.food.InsertFood(meal_name, weekday, quantity)
-//		if err != nil {
-//			app.serverError(w, err)
-//			return
-//		}
-//
-//		//http.Redirect(w, r, fmt.Sprintf("/news/about?id=%d", id), http.StatusSeeOther)
-//		http.Redirect(w, r, "/foods", http.StatusSeeOther)
-//
-//	}
-//	app.render(w, r, "createFood.page.tmpl", &templateData{})
-//}
+func (app *application) createFood(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodPost {
+		err := r.ParseForm()
+		if err != nil {
+			app.serverError(w, err)
+			return
+		}
+
+		meal_name := r.PostForm.Get("meal_name")
+		weekday := r.PostForm.Get("weekday")
+		quantity := r.PostForm.Get("quantity")
+
+		_, err = app.food.InsertFood(meal_name, weekday, quantity)
+		if err != nil {
+			app.serverError(w, err)
+			return
+		}
+
+		//http.Redirect(w, r, fmt.Sprintf("/news/about?id=%d", id), http.StatusSeeOther)
+		http.Redirect(w, r, "/foods", http.StatusSeeOther)
+
+	}
+	app.render(w, r, "createFood.page.tmpl", &templateData{})
+}

@@ -13,9 +13,9 @@ type News struct {
 	Image_url string
 }
 
-//type Foods struct {
-//	ID        int
-//	Meal_name string
-//	Weekday   string
-//	Quantity  int
-//}
+type Foods struct {
+	ID        int
+	Meal_name string
+	Weekday   string
+	Quantity  int
+}

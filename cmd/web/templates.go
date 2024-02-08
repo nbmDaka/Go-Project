@@ -7,9 +7,9 @@ import (
 )
 
 type templateData struct {
-	News     *models.News
-	NewsData []*models.News
-	//FoodsData []*models.Foods
+	News      *models.News
+	NewsData  []*models.News
+	FoodsData []*models.Foods
 }
 
 func newTemplateCache(dir string) (map[string]*template.Template, error) {
