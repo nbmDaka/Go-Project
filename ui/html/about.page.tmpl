@@ -1,0 +1,12 @@
+{{template "base" .}}
+
+{{define "content"}}
+    {{with .News}}
+    <section class="current">
+            <div class="current__img"><img  src="{{.Image_url}}" alt=""></div>
+            <div class="current__title">{{.Title}}</div>
+            <div class="current__descr">{{.Content}}</div>
+
+        </section>
+    {{end}}
+{{end}}

@@ -1,0 +1,21 @@
+{{template "base" .}}
+
+{{define "content"}}
+    <form action="/news/create" method="post">
+        <div>
+            <label>Title:</label>
+            <input type='text' name='title'>
+        </div>
+        <div>
+            <label>Content:</label>
+            <textarea name='content'></textarea>
+        </div>
+        <div>
+            <label>Image:(url...)</label>
+            <textarea name='image_url'></textarea>
+        </div>
+        <div>
+            <input type='submit' value='Publish news'>
+        </div>
+    </form>
+{{end}}

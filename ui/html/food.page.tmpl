@@ -1,0 +1,30 @@
+{{template "base" .}}
+{{define "content"}}
+    <section class="users">
+        <h1 class="users__title">USERS</h1>
+        {{if .FoodsData}}
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Meal_name</th>
+                <th>Weekday</th>
+                <th>Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{range .FoodsData}}
+            <tr>
+                <td>{{.ID}}</td>
+                <td>{{.Meal_name}}</td>
+                <td>{{.Weekday}}</td>
+                <td>{{.Quantity}}</td>
+            </tr>
+            {{end}}
+            </tbody>
+        </table>
+        {{else}}
+        <p>There's nothing to see here... yet!</p>
+        {{end}}
+    </section>
+{{end}}
