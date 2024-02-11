@@ -29,13 +29,18 @@
 {{/*                      <div class="header__links_item"><a href="/events">Events</a></div>*/}}
 {{/*                      <div class="header__links_item"><a href="/international">International</a></div>*/}}
                         <div class="header__links_item"><a href="/foods">Foods</a></div>
+                      <div class="header__links_item"><a href="/news/create">Create News</a></div>
+                      <div class="header__links_item"><a href="/foods/create">Create Food</a></div>
                       <div class="header__links_item"><a href="#footer">Contacts</a></div>
                     </div>
                   </div>
                   <div class="col-md-2 offset-md-2">
                     <div class="header__buttons">
-                      <button class="header__demobtn"><a href="/news/create">Create news</a></button>
-                      <button class="header__demobtn"><a href="/foods/create">Create food</a></button>
+                      <button class="header__demobtn"><a href="/user/signup">Sign Up</a></button>
+                      <button class="header__demobtn"><a href="/user/login">Log In</a></button>
+                        <form action='/user/logout' method='POST'>
+                            <button class="header__demobtn">Logout</button>
+                        </form>
 
                     </div>
                   </div>
@@ -50,6 +55,9 @@
               <h1 class="promo__text">AITU NEWS</h1>
             </div>
         </section>
+        {{with .Flash}}
+            <div class='flash'>{{.}}</div>
+        {{end}}
         {{block "content" .}}
         {{end }}
 
