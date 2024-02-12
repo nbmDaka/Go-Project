@@ -2,12 +2,14 @@
 
 {{define "content"}}
     <form action="/news/create" method="post">
+        <input type='hidden' name='csrf_token' value='{{.CSRFToken}}'>
         <div>
             <label>Title:</label>
-            <input type='text' name='title'>
+            <input type='text' name='title' >
         </div>
         <div>
             <label>Content:</label>
+
             <textarea name='content'></textarea>
         </div>
         <div>

@@ -1,9 +1,12 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
+	"github.com/justinas/nosurf"
 	"net/http"
 	"runtime/debug"
+	"time"
 )
 
 func (app *application) serverError(w http.ResponseWriter, err error) {
@@ -25,9 +28,42 @@ func (app *application) render(w http.ResponseWriter, r *http.Request, name stri
 		app.serverError(w, fmt.Errorf("The template %s does not exist", name))
 		return
 	}
-
-	err := ts.Execute(w, td)
+	buf := new(bytes.Buffer)
+	err := ts.Execute(buf, app.addDefaultData(td, r))
 	if err != nil {
 		app.serverError(w, err)
 	}
+	buf.WriteTo(w)
+}
+
+func (app *application) addDefaultData(td *templateData, r *http.Request) *templateData {
+	if td == nil {
+		td = &templateData{}
+	}
+	td.CSRFToken = nosurf.Token(r)
+	td.CurrentYear = time.Now().Year()
+	td.Flash = app.session.PopString(r, "flash")
+	td.IsAuthenticated = app.isAuthenticated(r)
+	td.IsTeacher = app.isTeacher(r)
+	td.IsStudent = app.isStudent(r)
+	td.IsAdmin = app.isAdmin(r)
+	return td
+}
+
+func (app *application) isAuthenticated(r *http.Request) bool {
+	return app.session.Exists(r, "authenticatedUserID")
+}
+func (app *application) isTeacher(r *http.Request) bool {
+	role := app.session.Get(r, "authenticatedUserRole")
+	return role == "teacher"
+}
+
+func (app *application) isStudent(r *http.Request) bool {
+	role := app.session.Get(r, "authenticatedUserRole")
+	return role == "student"
+}
+
+func (app *application) isAdmin(r *http.Request) bool {
+	role := app.session.Get(r, "authenticatedUserRole")
+	return role == "admin"
 }

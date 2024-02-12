@@ -1,15 +1,24 @@
 package main
 
 import (
+	"AITUNews/pkg/forms"
 	"AITUNews/pkg/models"
 	"html/template"
 	"path/filepath"
 )
 
 type templateData struct {
-	News     *models.News
-	NewsData []*models.News
-	//FoodsData []*models.Foods
+	CSRFToken       string
+	Flash           string
+	Form            *forms.Form
+	News            *models.News
+	IsAuthenticated bool
+	IsTeacher       bool
+	IsStudent       bool
+	IsAdmin         bool
+	NewsData        []*models.News
+	FoodsData       []*models.Foods
+	CurrentYear     int
 }
 
 func newTemplateCache(dir string) (map[string]*template.Template, error) {

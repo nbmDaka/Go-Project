@@ -1,0 +1,58 @@
+body, html {
+	height: 100%;
+}
+
+.navbar-logo {
+	filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(97deg) brightness(108%) contrast(101%);
+}
+
+.header-content {
+	background-image: url("../img/aitu-background.jpg");
+	background-size: cover;
+	background-position: center;
+	user-select: auto;
+}
+
+
+.header-content::before { /*opacity 50% for background*/
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.header-content-text {
+	margin: 0;
+	z-index: 0;
+	font-family: 'Teko', sans-serif;
+	font-style: bold;
+	color: white;
+	font-size: 4vw;
+}
+
+@media(max-width: 1200px) {
+	.header-content-text {
+		font-size: 5vw;
+	}
+}
+
+@media(max-width: 992px) {
+	.header-content-text {
+		font-size: 6vw;
+	}
+}
+
+@media(max-width: 768px) {
+	.header-content-text {
+		font-size: 8vw;
+	}
+}
+
+@media(max-width: 576px) {
+	.header-content-text {
+		font-size: 10vw;
+	}
+}
