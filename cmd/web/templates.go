@@ -8,12 +8,17 @@ import (
 )
 
 type templateData struct {
-	Flash       string
-	Form        *forms.Form
-	News        *models.News
-	NewsData    []*models.News
-	FoodsData   []*models.Foods
-	CurrentYear int
+	CSRFToken       string
+	Flash           string
+	Form            *forms.Form
+	News            *models.News
+	IsAuthenticated bool
+	IsTeacher       bool
+	IsStudent       bool
+	IsAdmin         bool
+	NewsData        []*models.News
+	FoodsData       []*models.Foods
+	CurrentYear     int
 }
 
 func newTemplateCache(dir string) (map[string]*template.Template, error) {

@@ -2,7 +2,7 @@
 
 {{define "content"}}
     <form action="/news/create" method="post">
-
+        <input type='hidden' name='csrf_token' value='{{.CSRFToken}}'>
         <div>
             <label>Title:</label>
             <input type='text' name='title' >

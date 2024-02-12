@@ -27,4 +27,5 @@ type User struct {
 	Name           string
 	Email          string
 	HashedPassword []byte
+	Role           string
 }

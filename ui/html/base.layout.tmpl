@@ -25,23 +25,25 @@
                   </div>
                   <div class="col-md-4 offset-md-2">
                     <div class="header__links">
-{{/*                      <div class="header__links_item"><a href="/library">Library</a></div>*/}}
-{{/*                      <div class="header__links_item"><a href="/events">Events</a></div>*/}}
-{{/*                      <div class="header__links_item"><a href="/international">International</a></div>*/}}
                         <div class="header__links_item"><a href="/foods">Foods</a></div>
-                      <div class="header__links_item"><a href="/news/create">Create News</a></div>
-                      <div class="header__links_item"><a href="/foods/create">Create Food</a></div>
+                        {{if .IsAuthenticated}}
+                            {{if or .IsTeacher .IsAdmin}}<div class="header__links_item"><a href="/news/create">Create News</a></div>{{end}}
+                            {{if or .IsTeacher .IsAdmin}}<div class="header__links_item"><a href="/foods/create">Create Food</a></div>{{end}}
+                        {{end}}
                       <div class="header__links_item"><a href="#footer">Contacts</a></div>
                     </div>
                   </div>
                   <div class="col-md-2 offset-md-2">
                     <div class="header__buttons">
-                      <button class="header__demobtn"><a href="/user/signup">Sign Up</a></button>
-                      <button class="header__demobtn"><a href="/user/login">Log In</a></button>
+                    {{if .IsAuthenticated}}
                         <form action='/user/logout' method='POST'>
+                            <input type='hidden' name='csrf_token' value='{{.CSRFToken}}'>
                             <button class="header__demobtn">Logout</button>
                         </form>
-
+                    {{else}}
+                      <button class="header__demobtn"><a href="/user/signup">Sign Up</a></button>
+                      <button class="header__demobtn"><a href="/user/login">Log In</a></button>
+                    {{end}}
                     </div>
                   </div>
                 </div>
