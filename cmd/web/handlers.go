@@ -79,7 +79,7 @@ func (app *application) aboutPage(w http.ResponseWriter, r *http.Request) {
 	}
 	app.render(w, r, "about.page.tmpl", &templateData{
 		News: s,
-	})
+		it})
 
 }
 
