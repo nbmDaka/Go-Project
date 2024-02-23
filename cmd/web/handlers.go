@@ -57,22 +57,22 @@ func (app *application) aboutPage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//s, err := app.news.Get(id)
-	//if err != nil {
-	//	if errors.Is(err, models.ErrNoRecord) {
-	//		app.notFound(w)
-	//	} else {
-	//		app.serverError(w, err)
-	//	}
-	//	return
-	//}
-	//
-	////flash := app.session.PopString(r, "flash")
-	////
-	////app.render(w, r, "about.page.tmpl", &templateData{
-	////	News: s,
-	////	Flash: flash,)}
-	////})
+	s, err := app.news.Get(id)
+	if err != nil {
+		if errors.Is(err, models.ErrNoRecord) {
+			app.notFound(w)
+		} else {
+			app.serverError(w, err)
+		}
+		return
+	}
+
+	flash := app.session.PopString(r, "flash")
+
+	app.render(w, r, "about.page.tmpl", &templateData{
+		Flash: flash,
+		News:  s,
+	})
 
 }
 
@@ -82,12 +82,10 @@ func (app *application) foods(w http.ResponseWriter, r *http.Request) {
 		app.serverError(w, err)
 		return
 	}
+	flash := app.session.PopString(r, "flash")
 	app.render(w, r, "food.page.tmpl", &templateData{
 		FoodsData: s,
-	})
-	flash := app.session.PopString(r, "flash")
-	app.render(w, r, "foods.page.tmpl", &templateData{
-		Flash: flash,
+		Flash:     flash,
 	})
 }
 
